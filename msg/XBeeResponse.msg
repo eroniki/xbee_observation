@@ -1,0 +1,11 @@
+Header header
+string msg_type
+string frame_id
+uint8[] source_addr
+string source_addr_long
+string command
+string response_ascii
+int16 response_int
+uint8 db
+duration rtt
+string status
