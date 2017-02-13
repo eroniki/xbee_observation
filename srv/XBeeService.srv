@@ -1,0 +1,6 @@
+---
+Header header
+string ssid
+geometry_msgs/PoseWithCovariance pose
+uint16[12] mac
+int64 rss

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(xbee_localization)
+project(xbee_observation)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -7,6 +7,9 @@ project(xbee_localization)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
+  geometry_msgs
+	move_base_msgs
+	nav_msgs
   message_generation
 )
 
@@ -46,16 +49,18 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 add_message_files(
    FILES
-   XBeeRequest.msg
-   XBeeResponse.msg
+   XBeeMessage.msg
+#   XBeeRequest.msg
+#   XBeeResponse.msg
 )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+  FILES
+  XBeeService.srv
+  XBeeArrayService.srv
+  SignalMapArrayService.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -67,6 +72,9 @@ add_message_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES std_msgs
+  geometry_msgs
+  nav_msgs
+  xbee_observation
 )
 
 ################################################
