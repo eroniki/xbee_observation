@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>xbee_localization</name>
+  <name>xbee_observation</name>
   <version>0.0.0</version>
-  <description>The xbee_localization package</description>
+  <description>The xbee_observation package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but mutiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/xbee_localization</url> -->
+  <!-- <url type="website">http://wiki.ros.org/xbee_observation</url> -->
 
 
   <!-- Author tags are optional, mutiple are allowed, one per tag -->
