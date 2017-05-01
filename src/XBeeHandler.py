@@ -12,15 +12,17 @@ import io
 import signal
 import sys
 
+
 class XBeeHandler(object):
     """docstring for XBeeHandler"""
+
     def __init__(self):
         """ TODO: ADD Error Handling """
         super(XBeeHandler, self).__init__()
         signal.signal(signal.SIGINT, self.signal_handler)
-        # self.serial          = serial.Serial(self.port, self.baud)
-        # self.xbee            = XBee(self.serial, callback=self.message_received)
-        self.request_time    = None
+        # self.serial = serial.Serial(self.port, self.baud)
+        # self.xbee = XBee(self.serial, callback=self.message_received)
+        self.request_time = None
 
     def init_port(self, port, baud):
         try:
@@ -40,8 +42,8 @@ class XBeeHandler(object):
 
     def send_remote_at(self, frame_id, dest_addr_long, command="DB"):
         self.xbee.remote_at(frame_id=frame_id,
-        dest_addr_long=dest_addr_long,
-        command=command)
+                            dest_addr_long=dest_addr_long,
+                            command=command)
         response = self.xbee.wait_read_frame()
 
         return response
@@ -53,6 +55,7 @@ class XBeeHandler(object):
         rospy.loginfo("Shutdown event caught.")
         self.xbee.halt()
         self.ser.close()
+
 
 if __name__ == '__main__':
     pass
