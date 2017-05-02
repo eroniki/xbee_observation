@@ -8,8 +8,6 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   geometry_msgs
-	move_base_msgs
-	nav_msgs
   message_generation
 )
 
@@ -50,8 +48,6 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
    FILES
    XBeeMessage.msg
-#   XBeeRequest.msg
-#   XBeeResponse.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -59,7 +55,6 @@ add_service_files(
   FILES
   XBeeService.srv
   XBeeArrayService.srv
-  SignalMapArrayService.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -72,8 +67,6 @@ add_service_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES std_msgs
-  geometry_msgs
-  nav_msgs
   xbee_observation
 )
 
