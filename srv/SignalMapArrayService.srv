@@ -1,4 +1,0 @@
----
-bool success
-string message
-nav_msgs/OccupancyGrid[] maps
