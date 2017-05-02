@@ -9,8 +9,8 @@ from xbee_observation.srv import XBeeArrayService
 from xbee_observation.srv import XBeeArrayServiceResponse
 from xbee_observation.msg import XBeeMessage
 from std_msgs.msg import Header
-from std_msgs.msg import String
 from std_msgs.msg import Int64
+from std_msgs.msg import Duration
 
 import rospy
 
@@ -51,9 +51,10 @@ class xbee_obs(object):
         rospy.loginfo("Service request captured")
         obsList = list()
         for i in range(len(self.addr)):
+            now = rospy.get_rostime()
             obsList.append(self.xbeeHandler.send_remote_at(
                 frame_id="0", dest_addr_long=self.addr[i].decode("hex")))
-            print obsList[i]
+            rospy.loginfo("Observation obtained: %s", obsList[i])
         return self.construct_response(obsList)
 
     def construct_response(self, data):
@@ -67,8 +68,10 @@ class xbee_obs(object):
             obs.mac = data[i]["source_addr_long"].encode('hex')
             try:
                 obs.rss = ord(data[i]["parameter"])
+                obs.rtt = data[i]["rtt"]
             except KeyError:
                 obs.rss = 0
+                obs.rtt = rospy.Duration.from_sec(0)
             obsList.append(obs)
 
         if(self.n_beacon > 0):
@@ -79,6 +82,7 @@ class xbee_obs(object):
             response.success = False
             response.message = "Error!"
 
+        # rospy.loginfo("Final Response (Array): %s", response)
         return response
 
 
